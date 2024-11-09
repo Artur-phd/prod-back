@@ -10,6 +10,7 @@ import {
   GroupBillEntity,
   GroupBillTransactionalEntity,
 } from 'src/core/bank/entities';
+import { UserEnums } from 'src/shared/enums';
 
 @Entity({ name: 'user' })
 export class UserEntity {
@@ -38,6 +39,20 @@ export class UserEntity {
     length: 15,
   })
   phone: string;
+
+  @Column({ type: 'varchar' })
+  password: string;
+
+  @Column({
+    type: 'bool',
+    name: 'is_blocked',
+    default: false,
+    nullable: false,
+  })
+  isBlocked?: boolean;
+
+  @Column({ type: 'enum', enum: UserEnums.RoleEnum })
+  role: UserEnums.RoleEnum;
 
   // Relations
 

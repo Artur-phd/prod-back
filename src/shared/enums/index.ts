@@ -1,2 +1,2 @@
 export * as AppEnums from './app';
-export * as UserEnum from './user';
+export * as UserEnums from './user';
