@@ -3,6 +3,8 @@ import { config } from 'dotenv';
 import { ConfigLoaders, ConfigTypes } from 'src/infra/app-config';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { join } from 'path';
+import { userEntities } from 'src/core/user';
+import { bankEntities } from 'src/core/bank';
 
 export const ormConfig = (
   dbConfig: ConfigTypes.DatabaseConfigType | object,
@@ -11,10 +13,10 @@ export const ormConfig = (
   return {
     ...dbConfig,
     type: 'postgres',
-    logging: false,
+    logging: true,
     synchronize: false,
     migrations: [migrationsDir],
-    entities: [],
+    entities: [...userEntities, ...bankEntities],
     autoLoadEntities: true,
     migrationsRun: true,
   };
