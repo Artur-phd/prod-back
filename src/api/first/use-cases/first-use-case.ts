@@ -5,6 +5,6 @@ export class FirstUseCase {
   constructor() {}
 
   public testContinue() {
-    return 'completed';
+    return { message: 'completed' };
   }
 }
