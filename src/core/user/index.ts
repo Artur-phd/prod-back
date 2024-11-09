@@ -1,7 +1,8 @@
 import { UserEntity, UserGroupEntity } from './entities';
+import { UserService } from './services';
 
 export const userEntities = [UserEntity, UserGroupEntity];
 
-export const userProviders = [];
+export const userProviders = [UserService];
 
-export const userExports = [];
+export const userExports = [UserService];
