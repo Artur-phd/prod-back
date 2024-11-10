@@ -11,14 +11,17 @@ import {
   GroupBillTransactionalEntity,
 } from 'src/core/bank/entities';
 import { UserEnums } from 'src/shared/enums';
+import { AutoMap } from '@automapper/classes';
 
 @Entity({ name: 'user' })
 export class UserEntity {
+  @AutoMap()
   @PrimaryGeneratedColumn({
     name: 'id',
   })
   id: number;
 
+  @AutoMap()
   @Column({
     name: 'first_name',
     type: 'varchar',
@@ -26,6 +29,7 @@ export class UserEntity {
   })
   firstName: string;
 
+  @AutoMap()
   @Column({
     name: 'last_name',
     type: 'varchar',
@@ -33,6 +37,7 @@ export class UserEntity {
   })
   lastName: string;
 
+  @AutoMap()
   @Column({
     name: 'phone',
     type: 'varchar',
@@ -40,9 +45,11 @@ export class UserEntity {
   })
   phone: string;
 
+  @AutoMap()
   @Column({ type: 'varchar' })
   password: string;
 
+  @AutoMap()
   @Column({
     type: 'bool',
     name: 'is_blocked',
@@ -51,11 +58,17 @@ export class UserEntity {
   })
   isBlocked?: boolean;
 
-  @Column({ type: 'enum', enum: UserEnums.RoleEnum })
+  @AutoMap()
+  @Column({
+    type: 'enum',
+    enum: UserEnums.RoleEnum,
+    default: UserEnums.RoleEnum.USER,
+  })
   role: UserEnums.RoleEnum;
 
   // Relations
 
+  @AutoMap()
   @OneToMany(() => UserGroupEntity, (group) => group.userId, {
     nullable: true,
     cascade: false,
@@ -65,6 +78,7 @@ export class UserEntity {
   })
   userGroup: UserGroupEntity;
 
+  @AutoMap()
   @OneToMany(() => GroupBillEntity, (groupBill) => groupBill.id, {
     nullable: true,
     cascade: true,
@@ -73,6 +87,7 @@ export class UserEntity {
   })
   groupBillId: number;
 
+  @AutoMap()
   @OneToMany(
     () => GroupBillTransactionalEntity,
     (groupBill) => groupBill.fromUserId,
@@ -82,6 +97,7 @@ export class UserEntity {
   )
   toUser: GroupBillTransactionalEntity;
 
+  @AutoMap()
   @OneToMany(() => UserEntity, (user) => user.toUser, {
     nullable: true,
   })

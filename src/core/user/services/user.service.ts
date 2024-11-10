@@ -2,7 +2,6 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { UserEntity } from '../entities';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserEnums } from 'src/shared/enums';
 import { hash } from 'argon2';
 
 @Injectable()
@@ -18,7 +17,6 @@ export class UserService {
       const newUser = await this.userRepository.create({
         ...payload,
         password,
-        role: UserEnums.RoleEnum.USER,
       });
       await this.userRepository.insert(newUser);
       return true;
