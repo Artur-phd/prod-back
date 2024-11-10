@@ -24,7 +24,7 @@ export class GroupBillTransactionalEntity {
   //  Relations
 
   @OneToMany(() => UserGroupEntity, (group) => group.id, {
-    nullable: false,
+    nullable: true,
     cascade: true,
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',

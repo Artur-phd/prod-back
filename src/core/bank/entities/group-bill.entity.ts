@@ -28,7 +28,7 @@ export class GroupBillEntity {
     () => GroupBillTransactionalEntity,
     (transactional) => transactional.id,
     {
-      nullable: false,
+      nullable: true,
     },
   )
   @JoinColumn({
